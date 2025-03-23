@@ -1,2 +1,31 @@
-<h1 class="section-title">Lista de Productos</h1>
-<div id="productList" class="product-list-container"></div>
+<h1>Productos</h1>
+<div id="productContainer" class="product-grid">
+  {{#each docs}}
+    <div class="product-item" data-id="{{this._id}}">
+      <img src="" alt="{{this.title}}" width="100" height="100">
+      <strong>{{this.title}}</strong>
+      <p>{{this.description}}</p>
+      <p><strong>Código:</strong> {{this.code}}</p>
+      <p><strong>Precio:</strong> ${{this.price}}</p>
+      <p><strong>Stock:</strong> {{this.stock}}</p>
+      <p><strong>Categoría:</strong> {{this.category}}</p>
+
+      <div class="btn-group">
+        <button class="btn-detail">Detalles</button>
+        <button class="btn-cart">Agregar al carrito</button>
+        <button class="btn-delete">Eliminar</button> 
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+
+
+
+
+
+
+
+
+
+{{!-- <button class="btn-delete" data-id="{{_id}}">Eliminar</button> --}}

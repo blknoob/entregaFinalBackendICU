@@ -4,17 +4,12 @@ const productManager = new ProductManager();
 const realTimeProductsController = {
   getRealTimeProducts: async (req, res) => {
     try {
-      const result = await productManager.getProducts();
-      res.status(200).json({
-        status: "success",
-        payload: result,
-      });
+      const products = await productManager.getProducts(req.query);
+      res.render("partials/realTimeProducts", { products });
     } catch (error) {
-      console.error("Error al obtener los productos", error.message);
-      res.status(500).json({ message: "Error al obtener los productos" });
+      res.status(400).send({ error: "Error al obtener productos" });
     }
   },
-
   createRealTimeProduct: async (req, res) => {
     const { title, description, code, price, stock, category, thumbnail } =
       req.body;

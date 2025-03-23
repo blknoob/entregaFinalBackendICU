@@ -1,60 +1,35 @@
 <section class="real-time-products">
   <h2 class="section-title">Productos en tiempo real</h2>
+
   <form id="productForm" class="product-form">
-    <input
-      type="text"
-      id="title"
-      class="form-input"
-      placeholder="Nombre del producto"
-      required
-    />
-    <input
-      type="text"
-      id="description"
-      class="form-input"
-      placeholder="Descripción"
-      required
-    />
-    <input
-      type="text"
-      id="code"
-      class="form-input"
-      placeholder="Código"
-      required
-    />
-    <input
-      type="number"
-      id="price"
-      class="form-input"
-      placeholder="Precio"
-      required
-    />
-    <input
-      type="number"
-      id="stock"
-      class="form-input"
-      placeholder="Stock"
-      required
-    />
-    <input
-      type="text"
-      id="category"
-      class="form-input"
-      placeholder="Categoría"
-      required
-    />
-    <input
-      type="text"
-      id="thumbnail"
-      class="form-input"
-      placeholder="URL de la imagen"
-      required
-    />
+    <input type="text" id="title" class="form-input" placeholder="Nombre del producto" required />
+    <input type="text" id="description" class="form-input" placeholder="Descripción" required />
+    <input type="text" id="code" class="form-input" placeholder="Código" required />
+    <input type="number" id="price" class="form-input" placeholder="Precio" required />
+    <input type="number" id="stock" class="form-input" placeholder="Stock" required />
+    <input type="text" id="category" class="form-input" placeholder="Categoría" required />
+    <input type="text" id="thumbnail" class="form-input" placeholder="URL de la imagen" required />
     <button type="submit" class="btn btn-add">Agregar Producto</button>
   </form>
 </section>
 
 <section class="product-list-section">
   <h2 class="section-title">Lista de Productos</h2>
-  <ul id="productContainer" class="product-list"></ul>
+  <ul id="productContainer" class="product-list">
+    {{#each docs}}
+      <li class="product-item" data-id="{{_id}}">
+        <img src="" alt="{{title}}" width="100" height="100">
+        <strong>{{title}}</strong>
+        <p>{{description}}</p>
+        <p><strong>Precio:</strong> ${{price}}</p>
+        <p><strong>Stock:</strong> {{stock}}</p>
+        <p><strong>Categoría:</strong> {{category}}</p>
+        <div class="btn-group">
+          <button class="btn-detail">Detalles</button>
+          <button class="btn-cart">Agregar al carrito</button>
+          <button class="btn-delete" data-id="{{_id}}">Eliminar</button>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
 </section>

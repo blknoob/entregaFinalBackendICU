@@ -1,20 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get("/products", (req, res) => {
+router.get("/api/products", (req, res) => {
   res.render("partials/products");
 });
 
-router.get("/realtimeproducts", (req, res) => {
+router.get("/api/realtimeproducts", (req, res) => {
   res.render("partials/realTimeProducts");
 });
 
-router.get("/cart", (req, res) => {
+router.get("/api/carts", (req, res) => {
   res.render("partials/carts");
 });
 
 module.exports = router;
-
-
-
-

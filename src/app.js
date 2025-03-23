@@ -4,9 +4,9 @@ const handlebarsConfig = require("./config/hbs");
 const path = require("path");
 const dotenv = require("dotenv");
 const viewsRoutes = require("./routes/viewsRoutes");
-const productsRoutes = require("./routes/productsRoutes");
-const realTimeProductsRoutes = require("./routes/realTimeProductsRoutes");
-const cartRoutes = require("./routes/cartRoutes");
+// const productsRoutes = require("./routes/productsRoutes");
+// const realTimeProductsRoutes = require("./routes/realTimeProductsRoutes");
+// const cartRoutes = require("./routes/cartRoutes");
 
 dotenv.config();
 
@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", viewsRoutes);
-app.use("/api", productsRoutes);
-app.use("/api", realTimeProductsRoutes);
-app.use("/api", cartRoutes);
+// app.use("/api", productsRoutes);
+// app.use("/api", realTimeProductsRoutes);
+// app.use("/api", cartRoutes);
 
 module.exports = app;

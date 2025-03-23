@@ -13,8 +13,8 @@ const configureSocket = (server) => {
   io.on("connection", async (socket) => {
     console.log("Cliente conectado");
 
-    const products = await productManager.getProducts({});
-    socket.emit("products", products.docs);
+    // const products = await productManager.getProducts({});
+    // socket.emit("products", products);
 
     socket.on("new-product", async (product) => {
       productManager.addProduct(
@@ -26,16 +26,15 @@ const configureSocket = (server) => {
         product.category,
         product.thumbnail
       );
-      
+
       const products = await productManager.getProducts({});
-      io.emit("products", products.docs);
-    }
-    );
+      io.emit("products", products);
+    });
 
     socket.on("delete-product", async (id) => {
       productManager.deleteProduct(id);
       const products = await productManager.getProducts({});
-      io.emit("products", products.docs);
+      io.emit("products", products);
     });
   });
 };

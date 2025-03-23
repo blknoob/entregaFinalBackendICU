@@ -14,6 +14,8 @@ const productController = {
         hasNextPage: result.hasNextPage,
         prevPage: result.prevPage,
         nextPage: result.nextPage,
+        prevLink: result.prevLink,
+        nextLink: result.nextLink,
       });
     } catch (error) {
       console.error("Error al obtener los productos:", error.message);
