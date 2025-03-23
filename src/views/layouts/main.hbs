@@ -1,0 +1,27 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket y Hbs</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+        <h1 class="header-title">Websocket y Handlebars</h1>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/products" class="nav-link">Todos los Productos</a></li>
+                <li><a href="/realtimeproducts" class="nav-link">Productos en Tiempo Real</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+      {{{body}}}
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    {{! <script src="js/index.js"></script> }}
+    <script src="/js/form.js"></script>
+    <script src="/js/products.js"></script>
+  </body>
+</html>
