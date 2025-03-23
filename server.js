@@ -15,6 +15,6 @@ const connectDB = require("./src/models/db");
 
 connectDB();
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

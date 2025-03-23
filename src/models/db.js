@@ -10,7 +10,7 @@ const connectDB = async () => {
     }
 
     await mongoose.connect(MONGO_URI);
-    console.log("Conectado a la base de datos", MONGO_URI);
+    console.log("Conectado a la base de datos");
   } catch (error) {
     console.error("Error al conectar a MongoDB:", error.message);
     process.exit(1);
@@ -18,3 +18,4 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
