@@ -1,3 +1,8 @@
 <h1>Aqui esta index</h1>
-{{> products}}
+{{> products docs=payload}}
+
+
+{{#if showForm}}
 {{> realTimeProducts}}
+{{/if}}
+

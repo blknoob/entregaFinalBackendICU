@@ -2,6 +2,7 @@ const CartManager = require("../manager/cartManager");
 const cartManager = new CartManager();
 
 const CartController = {
+
   createCart: async (req, res) => {
     try {
       const cart = await cartManager.createCart();
@@ -11,10 +12,44 @@ const CartController = {
     }
   },
 
+  getCarts: async (req, res) => {
+    try {
+      const carts = await cartManager.getCarts();
+      res.json(carts);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
+
+
+  getCartById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const cart = await cartManager.getCartById(id);
+      res.json(cart);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
+
   addProductCart: async (req, res) => {
     try {
       const { cartId, productId, quantity } = req.body;
-      const cart = await cartManager.addProductToCart(
+      const cart = await cartManager.addProductCart(
+        cartId,
+        productId,
+        quantity
+      );
+      res.json(cart);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
+
+  updateProductCart: async (req, res) => {
+    try {
+      const { cartId, productId, quantity } = req.body;
+      const cart = await cartManager.updateProductCart(
         cartId,
         productId,
         quantity
@@ -28,7 +63,7 @@ const CartController = {
   deleteProductCart: async (req, res) => {
     try {
       const { cartId, productId } = req.body;
-      const cart = await cartManager.deleteProductFromCart(cartId, productId);
+      const cart = await cartManager.deleteProductCart(cartId, productId);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -45,15 +80,17 @@ const CartController = {
     }
   },
 
-  getCart: async (req, res) => {
+  clearCart: async (req, res) => {
     try {
       const { id } = req.params;
-      const cart = await cartManager.getCartById(id);
+      const cart = await cartManager.clearCart(id);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
     }
   },
+
+  
 };
 
 module.exports = CartController;

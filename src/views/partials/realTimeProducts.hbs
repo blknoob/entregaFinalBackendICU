@@ -2,34 +2,107 @@
   <h2 class="section-title">Productos en tiempo real</h2>
 
   <form id="productForm" class="product-form">
-    <input type="text" id="title" class="form-input" placeholder="Nombre del producto" required />
-    <input type="text" id="description" class="form-input" placeholder="Descripción" required />
-    <input type="text" id="code" class="form-input" placeholder="Código" required />
-    <input type="number" id="price" class="form-input" placeholder="Precio" required />
-    <input type="number" id="stock" class="form-input" placeholder="Stock" required />
-    <input type="text" id="category" class="form-input" placeholder="Categoría" required />
-    <input type="text" id="thumbnail" class="form-input" placeholder="URL de la imagen" required />
+    <input
+      type="text"
+      id="title"
+      class="form-input"
+      placeholder="Nombre del producto"
+      required
+    />
+    <input
+      type="text"
+      id="description"
+      class="form-input"
+      placeholder="Descripción"
+      required
+    />
+    <input
+      type="text"
+      id="code"
+      class="form-input"
+      placeholder="Código"
+      required
+    />
+    <input
+      type="number"
+      id="price"
+      class="form-input"
+      placeholder="Precio"
+      required
+    />
+    <input
+      type="number"
+      id="stock"
+      class="form-input"
+      placeholder="Stock"
+      required
+    />
+    <input
+      type="text"
+      id="category"
+      class="form-input"
+      placeholder="Categoría"
+      required
+    />
+    <input
+      type="text"
+      id="thumbnail"
+      class="form-input"
+      placeholder="URL de la imagen"
+      required
+    />
     <button type="submit" class="btn btn-add">Agregar Producto</button>
   </form>
 </section>
 
 <section class="product-list-section">
   <h2 class="section-title">Lista de Productos</h2>
+
+<form method="GET" class="filter-form">
+  <input
+    type="text"
+    name="search"
+    placeholder="Buscar por nombre"
+    value="{{search}}"
+    class="form-input"
+  />
+
+  <select name="category" class="form-select">
+    <option value="">Todas las categorías</option>
+   <option value="ropa" {{#if isRopa}}selected{{/if}}>Ropa</option>
+    <option value="accesorios" {{#if isAccesorios}}selected{{/if}}>Accesorios</option>
+    <option value="bicicletas" {{#if isBicicletas}}selected{{/if}}>Bicicletas</option>    
+  </select>
+
+  <button type="submit" class="btn">Filtrar</button>
+</form>
+
+
+
   <ul id="productContainer" class="product-list">
     {{#each docs}}
       <li class="product-item" data-id="{{_id}}">
-        <img src="" alt="{{title}}" width="100" height="100">
+        <img src="" alt="{{title}}" width="100" height="100" />
         <strong>{{title}}</strong>
-        <p>{{description}}</p>
+
         <p><strong>Precio:</strong> ${{price}}</p>
         <p><strong>Stock:</strong> {{stock}}</p>
         <p><strong>Categoría:</strong> {{category}}</p>
         <div class="btn-group">
-          <button class="btn-detail">Detalles</button>
-          <button class="btn-cart">Agregar al carrito</button>
-          <button class="btn-delete" data-id="{{_id}}">Eliminar</button>
+           <button class="btn-delete" data-id="{{_id}}">Eliminar</button>
         </div>
       </li>
     {{/each}}
   </ul>
 </section>
+<div class="pagination">
+  {{#if hasPrevPage}}
+    <a href="?page={{prevPage}}" class="btn">Anterior</a>
+  {{/if}}
+
+  <span>Página {{page}} de {{totalPages}}</span>
+
+  {{#if hasNextPage}}
+    <a href="?page={{nextPage}}" class="btn">Siguiente</a>
+  {{/if}}
+</div>

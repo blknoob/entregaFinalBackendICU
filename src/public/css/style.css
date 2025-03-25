@@ -1,0 +1,52 @@
+.nav-link {
+  text-decoration: none;
+  padding: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.btn-cart {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+}
+

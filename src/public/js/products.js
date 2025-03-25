@@ -11,13 +11,74 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Eliminando producto:", id);
       socket.emit("delete-product", id);
     }
+
+    if (e.target.classList.contains("btn-cart")) {
+      const productId = e.target.closest(".product-item").dataset.id;
+      const cartId = "65fbec26b5f6d0d8e88e2345"; // 🛒 tu ID real de carrito
+      const quantity = 1;
+    
+      try {
+        const res = await fetch("/api/carts/product", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cartId,
+            productId,
+            quantity,
+          }),
+        });
+    
+        const data = await res.json();
+    
+        if (data.error) {
+          alert("❌ Error: " + data.error);
+        } else {
+          alert("✅ Producto agregado al carrito");
+        }
+      } catch (err) {
+        console.error("Error al agregar al carrito:", err);
+        alert("❌ Error al enviar solicitud");
+      }
+    }
+    
+    });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   socket.on("products", (products) => {
     console.log("Productos recibidos:", products);
     location.reload();
   });
-});
 
 
 

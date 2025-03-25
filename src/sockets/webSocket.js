@@ -1,6 +1,7 @@
 const ProductManager = require("../manager/productManager");
 const productManager = new ProductManager();
 const { Server } = require("socket.io");
+const productsModels = require("../models/products");
 
 const configureSocket = (server) => {
   const io = new Server(server, {
@@ -17,7 +18,7 @@ const configureSocket = (server) => {
     // socket.emit("products", products);
 
     socket.on("new-product", async (product) => {
-      productManager.addProduct(
+      const newProduct =await productManager.addProduct(
         product.title,
         product.description,
         product.code,
@@ -27,14 +28,21 @@ const configureSocket = (server) => {
         product.thumbnail
       );
 
+      console.log("Resultado de new-product", newProduct);
+
+      const total = await productsModels.countDocuments();
+      console.log("Total de productos", total);
+
+
       const products = await productManager.getProducts({});
-      io.emit("products", products);
+      io.emit("products", products.docs);
+      console.log("Producto emitido");
     });
 
     socket.on("delete-product", async (id) => {
-      productManager.deleteProduct(id);
+      await productManager.deleteProduct(id);
       const products = await productManager.getProducts({});
-      io.emit("products", products);
+      io.emit("products", products.docs);
     });
   });
 };

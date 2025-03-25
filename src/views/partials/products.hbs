@@ -1,8 +1,29 @@
+
+<form method="GET" class="filter-form">
+  <input
+    type="text"
+    name="search"
+    placeholder="Buscar por nombre"
+    value="{{search}}"
+    class="form-input"
+  />
+
+  <select name="category" class="form-select">
+    <option value="">Todas las categorías</option>
+    <option value="ropa" {{#if isRopa}}selected{{/if}}>Ropa</option>
+    <option value="accesorios" {{#if isAccesorios}}selected{{/if}}>Accesorios</option>
+    <option value="bicicletas" {{#if isBicicletas}}selected{{/if}}>Bicicletas</option>   
+  </select>
+
+  <button type="submit" class="btn">Filtrar</button>
+</form>
+
+
 <h1>Productos</h1>
 <div id="productContainer" class="product-grid">
   {{#each docs}}
     <div class="product-item" data-id="{{this._id}}">
-      <img src="" alt="{{this.title}}" width="100" height="100">
+      <img src="" alt="{{this.title}}" width="100" height="100" />
       <strong>{{this.title}}</strong>
       <p>{{this.description}}</p>
       <p><strong>Código:</strong> {{this.code}}</p>
@@ -12,20 +33,22 @@
 
       <div class="btn-group">
         <button class="btn-detail">Detalles</button>
-        <button class="btn-cart">Agregar al carrito</button>
-        <button class="btn-delete">Eliminar</button> 
+        <button class="btn-cart" data-id="{{this._id}}">Agregar al carrito</button>
+
       </div>
     </div>
   {{/each}}
 </div>
+<div class="pagination">
+  {{#if hasPrevPage}}
+    <a href="?page={{prevPage}}" class="btn">Anterior</a>
+  {{/if}}
+
+  <span>Página {{page}} de {{totalPages}}</span>
+
+  {{#if hasNextPage}}
+    <a href="?page={{nextPage}}" class="btn">Siguiente</a>
+  {{/if}}
+</div>
 
 
-
-
-
-
-
-
-
-
-{{!-- <button class="btn-delete" data-id="{{_id}}">Eliminar</button> --}}

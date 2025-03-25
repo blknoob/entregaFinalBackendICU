@@ -5,11 +5,21 @@ class CartManager {
   async createCart() { try {
     const newCart = new Cart({ products: [] });
     await newCart.save();
+    console.log("🛒 Carrito creado:", newCart._id);
     return newCart;
   }
   catch (error) {
     return { error: 'Error al crear carrito' };
   }
+  }
+
+  async getCarts() {
+    try {
+      return await Cart.find().populate('products.product');
+    }
+    catch (error) {
+      return { error: 'Error al obtener carritos' };
+    }
   }
 
   async getCartById(id) {
@@ -41,6 +51,30 @@ class CartManager {
       return { error: 'Error al agregar producto al carrito' };
     }
   }
+
+
+  async updateProductCart(cartId, productId, quantity) {
+    try {
+      const cart = await Cart.findById(cartId);
+      if (!cart) {
+        return { error: 'Carrito no encontrado' };
+      }
+      const productInCart = cart.products.find(p => p.product == productId);
+      if (productInCart) {
+        productInCart.quantity = quantity;
+      }
+      await cart.save();
+      return cart;
+    }
+    catch (error) {
+      return { error: 'Error al actualizar producto del carrito' };
+    }
+  }
+
+
+
+
+
 
   async deleteProductCart(cartId, productId) {
     try {

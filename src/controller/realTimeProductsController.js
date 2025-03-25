@@ -5,7 +5,10 @@ const realTimeProductsController = {
   getRealTimeProducts: async (req, res) => {
     try {
       const products = await productManager.getProducts(req.query);
-      res.render("partials/realTimeProducts", { products });
+      res.render("partials/realTimeProducts", {
+        title: "Productos en tiempo real",
+        ...products, 
+      });
     } catch (error) {
       res.status(400).send({ error: "Error al obtener productos" });
     }
