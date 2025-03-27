@@ -12,6 +12,9 @@ function handlebarsConfig(app) {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true,
       },
+      helpers: {
+        multiply: (a, b) => a * b,
+      },
     })
   );
   app.set("view engine", "hbs");

@@ -2,7 +2,6 @@ const CartManager = require("../manager/cartManager");
 const cartManager = new CartManager();
 
 const CartController = {
-
   createCart: async (req, res) => {
     try {
       const cart = await cartManager.createCart();
@@ -21,11 +20,10 @@ const CartController = {
     }
   },
 
-
   getCartById: async (req, res) => {
     try {
-      const { id } = req.params;
-      const cart = await cartManager.getCartById(id);
+      const { cid } = req.params;
+      const cart = await cartManager.getCartById(cid);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -34,12 +32,9 @@ const CartController = {
 
   addProductCart: async (req, res) => {
     try {
-      const { cartId, productId, quantity } = req.body;
-      const cart = await cartManager.addProductCart(
-        cartId,
-        productId,
-        quantity
-      );
+      const { cid, pid } = req.params;
+      const { quantity } = req.body;
+      const cart = await cartManager.addProductCart(cid, pid, quantity);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -48,12 +43,9 @@ const CartController = {
 
   updateProductCart: async (req, res) => {
     try {
-      const { cartId, productId, quantity } = req.body;
-      const cart = await cartManager.updateProductCart(
-        cartId,
-        productId,
-        quantity
-      );
+      const { cid, pid } = req.params;
+      const { quantity } = req.body;
+      const cart = await cartManager.updateProductCart(cid, pid, quantity);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -62,8 +54,8 @@ const CartController = {
 
   deleteProductCart: async (req, res) => {
     try {
-      const { cartId, productId } = req.body;
-      const cart = await cartManager.deleteProductCart(cartId, productId);
+      const { cid, pid } = req.params;
+      const cart = await cartManager.deleteProductCart(cid, pid);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -72,8 +64,8 @@ const CartController = {
 
   deleteCart: async (req, res) => {
     try {
-      const { id } = req.params;
-      const cart = await cartManager.deleteCart(id);
+      const { cid } = req.params;
+      const cart = await cartManager.deleteCart(cid);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
@@ -82,15 +74,13 @@ const CartController = {
 
   clearCart: async (req, res) => {
     try {
-      const { id } = req.params;
-      const cart = await cartManager.clearCart(id);
+      const { cid } = req.params;
+      const cart = await cartManager.clearCart(cid);
       res.json(cart);
     } catch (error) {
       res.status(400).json({ error });
     }
   },
-
-  
 };
 
 module.exports = CartController;

@@ -21,8 +21,7 @@ const productController = {
         showForm: false,
         search: req.query.search,
         isRopa: req.query.category === "ropa",
-        isAccesorios: req.query.category === "accesorios",
-        isBicicletas: req.query.category === "bicicletas",
+        isAccesorios: req.query.category === "electronica",
       });
     } catch (error) {
       console.error("Error al obtener los productos:", error.message);

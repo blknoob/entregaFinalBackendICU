@@ -1,0 +1,21 @@
+<h2>{{title}}</h2>
+
+{{#if products.length}}
+  <ul id="cart-list" data-cart-id="{{cartId}}">
+    {{#each products}}
+      <li class="cart-item" data-id="{{this.product._id}}">
+        <strong>{{this.product.title}}</strong>
+        - Cantidad: {{this.quantity}}
+        - Precio: ${{this.product.price}}
+        - Subtotal: ${{multiply this.product.price this.quantity}}
+
+        <button class="btn-delete" data-pid="{{this.product._id}}">Eliminar</button>
+      </li>
+    {{/each}}
+  </ul>
+
+  <p><strong>Total:</strong> ${{total}}</p>
+  <button id="btn-clear-cart">Vaciar carrito</button>
+{{else}}
+  <p>Carrito vacío.</p>
+{{/if}}

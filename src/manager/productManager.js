@@ -66,15 +66,11 @@ class ProductManager {
       const result = await newProduct.save();
       console.log("Producto agregado en la base de datos");
       return result;
-
-
-
-
-
-      // await newProduct.save();
-      // return newProduct;
     } catch (error) {
-      console.error("Error al agregar producto en la base de datos:", error.message);
+      console.error(
+        "Error al agregar producto en la base de datos:",
+        error.message
+      );
       return { error: "Error al agregar producto" };
     }
   }
