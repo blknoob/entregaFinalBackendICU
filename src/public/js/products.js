@@ -16,41 +16,38 @@ const createCart = async () => {
   }
 };
 
-const linkCart = () => {
-  const cart = document.getElementById("cart");
-  if (cart && cartId) {
-    cart.href = `/cart/${cartId}`;
-  }
-};
+// const linkCart = () => {
+//   const cart = document.getElementById("cart");
+//   if (cart && cartId) {
+//     cart.href = `/cart/${cartId}`;
+//   }
+// };
 
-function cartUrl (){
+function cartUrl() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('cartId');
+  return params.get("cartId");
 }
 
-
-
+localStorage.setItem("cartId", "67e4caa72fb50d3f28029ab4");
 
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("productContainer");
   if (!container) return;
 
-  cartId = cartUrl();
-  linkCart();
+  cartId = localStorage.getItem("cartId") || cartUrl();
+  
 
   container.addEventListener("click", async (e) => {
-
     if (e.target.classList.contains("btn-cart")) {
       const productId = e.target.dataset.id;
       const quantity = 1;
 
       if (!cartId) {
         cartId = await createCart();
-        linkCart();
 
         const url = new URL(window.location);
-        url.searchParams.set('cartId', cartId);
-        window.history.pushState({}, '', url);
+        url.searchParams.set("cartId", cartId);
+        window.history.pushState({}, "", url);
       }
 
       try {
@@ -68,15 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           alert(`Producto agregado al carrito ${cartId}`);
         }
-      }
-      catch (err) {
+      } catch (err) {
         console.error("Error:", err);
         alert("Error al agregar producto al carrito");
       }
-
-
-
-
 
       // if (!cartId) {
       //   alert("No se pudo crear el carrito");
@@ -86,8 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // if (cartId) {
       //   document.getElementById("cart").href = `/cart/${cartId}`;
       // }
-
-     
     }
 
     if (e.target.classList.contains("btn-delete")) {

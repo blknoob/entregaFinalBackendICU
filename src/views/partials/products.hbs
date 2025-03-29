@@ -11,8 +11,7 @@
   <select name="category" class="form-select">
     <option value="">Todas las categorías</option>
     <option value="ropa" {{#if isRopa}}selected{{/if}}>Ropa</option>
-    <option value="accesorios" {{#if isAccesorios}}selected{{/if}}>Accesorios</option>
-    <option value="bicicletas" {{#if isBicicletas}}selected{{/if}}>Bicicletas</option>   
+    <option value="electronica" {{#if isAccesorios}}selected{{/if}}>Electronica</option>     
   </select>
 
   <button type="submit" class="btn">Filtrar</button>
@@ -32,8 +31,8 @@
       <p><strong>Categoría:</strong> {{this.category}}</p>
 
       <div class="btn-group">
-        <button class="btn-detail">Detalles</button>
-        <button class="btn-cart" data-id="{{this._id}}">Agregar al carrito</button>
+        <button onclick="location.href='/products/{{this._id}}'" class="btn">Detalles del Producto</button>
+        <button class="btn" data-id="{{this._id}}">Agregar al Carrito</button>
 
       </div>
     </div>
